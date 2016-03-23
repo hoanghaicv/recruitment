@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+      xmlns="http://www.springframework.org/schema/security"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:beans="http://www.springframework.org/schema/beans"
+      xsi:schemaLocation="
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+ 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <http pattern="/error/**" security="none"/>
+    <http entry-point-ref="restAuthenticationEntryPoint" access-decision-manager-ref="accessDecisionManager" use-expressions="true" auto-config="true">
+        <form-login
+                authentication-success-handler-ref="successHandler"
+                authentication-failure-handler-ref="failureHandler" username-parameter="username"
+                password-parameter="password"
+                />
+        <logout invalidate-session="false"  success-handler-ref="logoutSuccessHandler"/>
+        <!--<access-denied-handler error-page="/error/401"/>-->
+        <intercept-url pattern="/api/request/reject/**" method="PUT" access="hasAnyRole('ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER','ROLE_HMT_RECRUITMENT_ADMIN') and isActivate()"/>
+        <intercept-url pattern="/api/request/accept/**" method="PUT" access="hasAnyRole('ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER','ROLE_HMT_RECRUITMENT_ADMIN') and isActivate()"/>
+        <intercept-url pattern="/api/request/close/**" method="PUT" access="hasAnyRole('ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_RECRUITER') and isActivate()"/>
+        <intercept-url pattern="/api/request/create/**" method="POST" access="hasAnyRole('ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER','ROLE_HMT_RECRUITMENT_PARTNER') and isActivate()"/>
+        <intercept-url pattern="/api/request/edit/**" method="PUT" access="hasAnyRole('ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER','ROLE_HMT_RECRUITMENT_PARTNER') and isActivate()"/>
+        <intercept-url pattern="/api/request/list/**" method="GET" access="hasAnyRole('ROLE_HMT_RECRUITMENT_RECRUITER','ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER','ROLE_HMT_RECRUITMENT_PARTNER') and isActivate() "/>
+        <intercept-url pattern="/api/request/allocate/**" method="PUT" access="hasRole('ROLE_HMT_RECRUITMENT_ADMIN') and isActivate()"/>
+        <intercept-url pattern="/api/request/**" method="POST" access="isAuthenticated() and isActivate()"/>
+        <intercept-url pattern="/api/request/**" method="GET" access="isAuthenticated() and isActivate()"/>
+        <intercept-url pattern="/api/request/detail/**" method="GET" access="hasAnyRole('ROLE_HMT_RECRUITMENT_TECH_INTERVIEWER','ROLE_HMT_RECRUITMENT_RECRUITER','ROLE_HMT_RECRUITMENT_PARTNER','ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER') and isActivate()"/>
+        <intercept-url pattern="/api/candidate/**" method="POST" access="isAuthenticated() and isActivate()"/>
+        <intercept-url pattern="/api/candidate/**" method="GET" access="isAuthenticated() and isActivate()"/>
+        <intercept-url pattern="/api/candidate/requestMoreInfo/**" method="POST" access="hasAnyRole('ROLE_HMT_RECRUITMENT_PARTNER','ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER') and isActivate()"/>
+        <intercept-url pattern="/api/candidate/create/**" method="POST" access="hasAnyRole('ROLE_HMT_RECRUITMENT_RECRUITER','ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER') and isActivate()"/>
+        <intercept-url pattern="/api/candidate/edit/**" method="PUT" access="hasAnyRole('ROLE_HMT_RECRUITMENT_RECRUITER','ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER') and isActivate()"/>
+        <intercept-url pattern="/api/candidate/delete/**" method="DELETE" access="hasAnyRole('ROLE_HMT_RECRUITMENT_RECRUITER','ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER') and isActivate()"/>
+        <intercept-url pattern="/api/candidate/submit/**" method="POST" access="hasAnyRole('ROLE_HMT_RECRUITMENT_RECRUITER','ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER') and isActivate()"/>
+        <intercept-url pattern="/api/candidate/CV/upload/**" method="POST" access="hasAnyRole('ROLE_HMT_RECRUITMENT_RECRUITER','ROLE_HMT_RECRUITMENT_ADMIN','ROLE_HMT_RECRUITMENT_REQUEST_REVIEWER') and isActivate()"/>
+        <intercept-url pattern="/api/candidate/accept/**" method="PUT" access="isAuthenticated() and isActivate()"/>
+        <intercept-url pattern="/api/candidate/reject/**" method="PUT" access="isAuthenticated() and isActivate()"/>
+        <intercept-url pattern="/api/user/**" method="GET" access="hasRole('ROLE_HMT_RECRUITMENT_ADMIN') and isActivate()"/>
+        <intercept-url pattern="/api/user/**" method="POST" access="hasRole('ROLE_HMT_RECRUITMENT_ADMIN') and isActivate()"/>
+        <intercept-url pattern="/api/user/**" method="PUT" access="hasRole('ROLE_HMT_RECRUITMENT_ADMIN') and isActivate()"/>
+        <intercept-url pattern="/api/user/**" method="DELETE" access="hasRole('ROLE_HMT_RECRUITMENT_ADMIN') and isActivate()"/>
+        <intercept-url pattern="/api/candidate/CV/download/**" method="PUT" access="isAuthenticated() and isActivate()"/>
+        <intercept-url pattern="/api/getCurrentUser/**" method="GET" access="isAuthenticated() and isActivate()"/>
+        <intercept-url pattern="/api/getPassword/**" method="GET" access="isAuthenticated() and isActivate()"/>
+        <intercept-url pattern="/api/changePassword/**" method="GET" access="isAuthenticated() and isActivate()"/>
+        <intercept-url pattern="/api/configuration/**" method="GET" access="isAuthenticated() and isActivate()"/>
+    </http>
+    <beans:bean id="logoutSuccessHandler" class=" vn.co.huntermacdonald.security.LogoutSuccessHandler"/>
+    <beans:bean id="successHandler"
+                class="vn.co.huntermacdonald.security.SavedRequestAwareAuthenticationSuccessHandler"/>
+    <beans:bean id="failureHandler" class="vn.co.huntermacdonald.security.AuthenticationFailHandler"/>
+
+    <beans:bean id="restAuthenticationEntryPoint" class="vn.co.huntermacdonald.security.RestAuthenEntryPoint" />
+    <beans:bean id="authenticationProvider" class="vn.co.huntermacdonald.security.AuthenticationProvider"/>
+
+    <global-method-security pre-post-annotations="enabled">
+        <expression-handler ref="expressionHandler"/>
+    </global-method-security>
+
+    <beans:bean id="expressionHandler" class="vn.co.huntermacdonald.security.RecruitmentWebSecurityExpressionHandler"/>
+    <beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <beans:property name="decisionVoters">
+            <beans:list>
+                <beans:bean class="org.springframework.security.web.access.expression.WebExpressionVoter">
+                    <beans:property name="expressionHandler" ref="expressionHandler"/>
+                </beans:bean>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider ref='authenticationProvider'>
+        </authentication-provider>
+    </authentication-manager>
+
+
+</beans:beans>

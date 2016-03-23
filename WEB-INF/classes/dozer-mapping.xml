@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping>
+        <class-a>vn.co.huntermacdonald.core.entity.User</class-a>
+        <class-b>vn.co.huntermacdonald.ws.vo.UserVo</class-b>
+        <field-exclude>
+            <a>roles</a>
+            <b>roles</b>
+        </field-exclude>
+    </mapping>
+    <mapping>
+        <class-a>vn.co.huntermacdonald.core.entity.Configuration</class-a>
+        <class-b>vn.co.huntermacdonald.ws.vo.ConfigurationVo</class-b>
+    </mapping>
+    <mapping>
+        <class-a>vn.co.huntermacdonald.core.entity.Application</class-a>
+        <class-b>vn.co.huntermacdonald.ws.vo.ApplicationVo</class-b>
+        <field custom-converter="vn.co.huntermacdonald.ws.converter.DateAndLongConverter">
+            <a>availability</a>
+            <b>availability</b>
+        </field>
+        <field custom-converter="vn.co.huntermacdonald.ws.converter.DateAndLongConverter">
+            <a>regDate</a>
+            <b>regDate</b>
+        </field>
+        <field-exclude>
+            <a>jobTitle</a>
+            <b>jobTitle</b>
+        </field-exclude>
+    </mapping>
+    <mapping>
+        <class-a>vn.co.huntermacdonald.core.entity.Candidate</class-a>
+        <class-b>vn.co.huntermacdonald.ws.vo.CandidateVo</class-b>
+        <field-exclude type="one-way">
+            <a>candidateSkills</a>
+            <b>candidateSkills</b>
+        </field-exclude>
+    </mapping>
+    <mapping>
+        <class-a>vn.co.huntermacdonald.core.entity.RequestSkill</class-a>
+        <class-b>vn.co.huntermacdonald.ws.vo.RequestSkillVo</class-b>
+    </mapping>
+    <mapping>
+        <class-a>vn.co.huntermacdonald.core.entity.Request</class-a>
+        <class-b>vn.co.huntermacdonald.ws.vo.RequestDetailVo</class-b>
+        <field custom-converter="vn.co.huntermacdonald.ws.converter.DateAndLongConverter">
+            <a>requestDeadline</a>
+            <b>requestDeadline</b>
+        </field>
+        <field custom-converter="vn.co.huntermacdonald.ws.converter.DateAndLongConverter">
+            <a>regDate</a>
+            <b>regDate</b>
+        </field>
+    </mapping>
+
+</mappings>

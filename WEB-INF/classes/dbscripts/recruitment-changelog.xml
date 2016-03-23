@@ -1,0 +1,1368 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="Admin (generated)" id="1457505160979-1">
+        <createTable tableName="application">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="request_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="candidate_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_job_title" type="VARCHAR(255)"/>
+            <column name="last_company" type="VARCHAR(255)"/>
+            <column name="rate" type="VARCHAR(255)"/>
+            <column name="availability" type="datetime"/>
+            <column name="the_grid" type="BIGINT"/>
+            <column name="status" type="VARCHAR(50)"/>
+            <column name="security_clearance_level" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reject_reason" type="LONGTEXT"/>
+            <column name="more_information_required" type="LONGTEXT"/>
+            <column name="notes" type="LONGTEXT"/>
+            <column name="linkedLn" type="VARCHAR(255)"/>
+            <column name="reg_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_user_id" remarks="// this is recruiter  who creae application for applicant" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mod_date" type="datetime"/>
+            <column name="mod_user_id" type="BIGINT"/>
+            <column name="resume_file_name" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-2">
+        <createTable tableName="candidate">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="home_location" type="VARCHAR(255)"/>
+            <column name="reg_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_user_id" remarks="//this is recruiter  who create candidate infos" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mod_date" type="datetime"/>
+            <column name="mod_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-3">
+        <createTable tableName="candidate_skill">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="request_skill_id" type="BIGINT"/>
+            <column name="candidate_id" type="BIGINT"/>
+            <column name="value" type="INT"/>
+            <column name="reg_date" type="datetime"/>
+            <column name="reg_user_id" type="BIGINT"/>
+            <column name="mod_date" type="datetime"/>
+            <column name="mod_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-4">
+        <createTable tableName="configuration">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="keyword" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="config_name" type="VARCHAR(255)"/>
+            <column name="config_desc" type="VARCHAR(255)"/>
+            <column name="reg_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mod_date" type="datetime"/>
+            <column name="mod_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-5">
+        <createTable tableName="interview_info">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="application_id" type="BIGINT"/>
+            <column name="interview_round" type="INT"/>
+            <column name="result" type="VARCHAR(50)"/>
+            <column name="reject_reason" type="VARCHAR(255)"/>
+            <column name="comment" type="LONGTEXT"/>
+            <column name="reg_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mod_date" type="datetime"/>
+            <column name="mod_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-6">
+        <createTable tableName="request">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="job_title" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_title_other" type="VARCHAR(255)"/>
+            <column name="employment_type" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number_of_position" type="INT"/>
+            <column name="contract_length" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contract_length_other" type="VARCHAR(255)"/>
+            <column name="candidate_rate" type="VARCHAR(200)"/>
+            <column name="minimum_security_clearance" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_other" type="VARCHAR(255)"/>
+            <column name="job_spec" type="LONGTEXT"/>
+            <column name="request_deadline" type="datetime"/>
+            <column name="priority" type="VARCHAR(50)"/>
+            <column name="status" type="VARCHAR(50)"/>
+            <column name="accepted_id" type="BIGINT"/>
+            <column name="rejected_id" type="BIGINT"/>
+            <column name="reject_reason" type="LONGTEXT"/>
+            <column name="close_reason" type="LONGTEXT"/>
+            <column name="recruiter_id" type="BIGINT"/>
+            <column name="tech_id" type="BIGINT"/>
+            <column name="partner_interview_id" remarks="//partner who responsible for interview" type="BIGINT"/>
+            <column name="other_information" type="LONGTEXT"/>
+            <column name="advertise" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="the_grid" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="0" name="skip_client_interview" type="VARCHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="reg_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_user_id" remarks="//This is partner" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mod_date" type="datetime"/>
+            <column name="mod_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-7">
+        <createTable tableName="request_skill">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="skill_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="request_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mod_date" type="datetime"/>
+            <column name="mod_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-8">
+        <createTable tableName="role">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="role_name" type="VARCHAR(50)"/>
+            <column name="role_desc" type="VARCHAR(100)"/>
+            <column name="reg_date" type="datetime"/>
+            <column name="reg_user_id" type="BIGINT"/>
+            <column name="mod_date" type="datetime"/>
+            <column name="mod_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-9">
+        <createTable tableName="user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_name" type="VARCHAR(50)"/>
+            <column name="password" type="VARCHAR(50)"/>
+            <column name="display_name" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="reg_user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mod_user_id" type="BIGINT"/>
+            <column name="mod_date" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-10">
+        <createTable tableName="user_role">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mod_date" type="datetime"/>
+            <column name="mod_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-11">
+        <createIndex indexName="FK10_minimum_security" tableName="request">
+            <column name="minimum_security_clearance"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-12">
+        <createIndex indexName="FK11_contract_length" tableName="request">
+            <column name="contract_length"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-13">
+        <createIndex indexName="FK11_the_grid" tableName="request">
+            <column name="the_grid"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-14">
+        <createIndex indexName="FK12_advertise" tableName="request">
+            <column name="advertise"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-15">
+        <createIndex indexName="FK1_application_id" tableName="interview_info">
+            <column name="application_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-16">
+        <createIndex indexName="FK1_recruiter_id" tableName="request">
+            <column name="recruiter_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-17">
+        <createIndex indexName="FK1_request_skill" tableName="candidate_skill">
+            <column name="request_skill_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-18">
+        <createIndex indexName="FK1_user_id" tableName="user_role">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-19">
+        <createIndex indexName="FK2_accepted_id" tableName="request">
+            <column name="accepted_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-20">
+        <createIndex indexName="FK2_candidate" tableName="candidate_skill">
+            <column name="candidate_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-21">
+        <createIndex indexName="FK2_role_id" tableName="user_role">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-22">
+        <createIndex indexName="FK3_rejected_id" tableName="request">
+            <column name="rejected_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-23">
+        <createIndex indexName="FK3_security_clearance_level" tableName="application">
+            <column name="security_clearance_level"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-24">
+        <createIndex indexName="FK3_the_grid" tableName="application">
+            <column name="the_grid"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-25">
+        <createIndex indexName="FK5_partner_interview_id" tableName="request">
+            <column name="partner_interview_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-26">
+        <createIndex indexName="FK5_techid" tableName="request">
+            <column name="tech_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-27">
+        <createIndex indexName="FK7_employment_type" tableName="request">
+            <column name="employment_type"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-28">
+        <createIndex indexName="FK7_job_title" tableName="request">
+            <column name="job_title"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-29">
+        <createIndex indexName="FK9_client" tableName="request">
+            <column name="client"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-30">
+        <createIndex indexName="candidate_id" tableName="application">
+            <column name="candidate_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-31">
+        <createIndex indexName="request_id" tableName="application">
+            <column name="request_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-32">
+        <addForeignKeyConstraint baseColumnNames="minimum_security_clearance" baseTableName="request" constraintName="FK10_minimum_security" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="configuration"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-33">
+        <addForeignKeyConstraint baseColumnNames="contract_length" baseTableName="request" constraintName="FK11_contract_length" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="configuration"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-34">
+        <addForeignKeyConstraint baseColumnNames="the_grid" baseTableName="request" constraintName="FK11_the_grid" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="configuration"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-35">
+        <addForeignKeyConstraint baseColumnNames="advertise" baseTableName="request" constraintName="FK12_advertise" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="configuration"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-36">
+        <addForeignKeyConstraint baseColumnNames="application_id" baseTableName="interview_info" constraintName="FK1_application_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="application"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-37">
+        <addForeignKeyConstraint baseColumnNames="recruiter_id" baseTableName="request" constraintName="FK1_recruiter_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-38">
+        <addForeignKeyConstraint baseColumnNames="request_id" baseTableName="application" constraintName="FK1_request_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="request"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-39">
+        <addForeignKeyConstraint baseColumnNames="request_skill_id" baseTableName="candidate_skill" constraintName="FK1_request_skill" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="request_skill"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-40">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role" constraintName="FK1_user_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-41">
+        <addForeignKeyConstraint baseColumnNames="accepted_id" baseTableName="request" constraintName="FK2_accepted_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-42">
+        <addForeignKeyConstraint baseColumnNames="candidate_id" baseTableName="candidate_skill" constraintName="FK2_candidate" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidate"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-43">
+        <addForeignKeyConstraint baseColumnNames="candidate_id" baseTableName="application" constraintName="FK2_candidate_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidate"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-44">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_role" constraintName="FK2_role_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="role"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-45">
+        <addForeignKeyConstraint baseColumnNames="rejected_id" baseTableName="request" constraintName="FK3_rejected_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-46">
+        <addForeignKeyConstraint baseColumnNames="security_clearance_level" baseTableName="application" constraintName="FK3_security_clearance_level" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="configuration"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-47">
+        <addForeignKeyConstraint baseColumnNames="the_grid" baseTableName="application" constraintName="FK3_the_grid" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="configuration"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-48">
+        <addForeignKeyConstraint baseColumnNames="partner_interview_id" baseTableName="request" constraintName="FK5_partner_interview_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-49">
+        <addForeignKeyConstraint baseColumnNames="tech_id" baseTableName="request" constraintName="FK5_techid" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-50">
+        <addForeignKeyConstraint baseColumnNames="employment_type" baseTableName="request" constraintName="FK7_employment_type" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="configuration"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-51">
+        <addForeignKeyConstraint baseColumnNames="job_title" baseTableName="request" constraintName="FK7_job_title" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="configuration"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505160979-52">
+        <addForeignKeyConstraint baseColumnNames="client" baseTableName="request" constraintName="FK9_client" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="configuration"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505283468-3">
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="1"/>
+            <column name="keyword" value="advertise"/>
+            <column name="config_name" value="No"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-01 10:46:26.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="2"/>
+            <column name="keyword" value="candidate_status"/>
+            <column name="config_name" value="NEW"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 14:36:52.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="3"/>
+            <column name="keyword" value="client"/>
+            <column name="config_name" value="Capita Group plc"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-28 10:20:53.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="4"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="1 week"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-01 10:31:31.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="5"/>
+            <column name="keyword" value="employment_type"/>
+            <column name="config_name" value="Contract"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-28 10:08:32.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="6"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value="Consultant"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 11:13:33.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="7"/>
+            <column name="keyword" value="minimum_security_clearance"/>
+            <column name="config_name" value="SC"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-28 10:30:39.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="8"/>
+            <column name="keyword" value="request_status"/>
+            <column name="config_name" value="NEW"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 14:25:30.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="9"/>
+            <column name="keyword" value="the_grid"/>
+            <column name="config_name" value="No"/>
+            <column name="config_desc" value=""/>
+            <column name="reg_date" valueDate="2016-02-01 10:43:47.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="10"/>
+            <column name="keyword" value="advertise"/>
+            <column name="config_name" value="HM"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-01 10:46:33.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="11"/>
+            <column name="keyword" value="candidate_status"/>
+            <column name="config_name" value="READY FOR TECH INTERVIEW"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 14:58:18.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date" valueDate="2016-01-27 14:58:20.0"/>
+            <column name="mod_user_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="12"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="2 weeks"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-01 10:31:40.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="13"/>
+            <column name="keyword" value="employment_type"/>
+            <column name="config_name" value="Perm"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-28 10:09:20.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="15"/>
+            <column name="keyword" value="request_status"/>
+            <column name="config_name" value="ACCEPTED"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 14:25:47.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="16"/>
+            <column name="keyword" value="the_grid"/>
+            <column name="config_name" value="essential"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-01 10:44:17.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="17"/>
+            <column name="keyword" value="advertise"/>
+            <column name="config_name" value="Kensal"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-12-01 10:46:42.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="18"/>
+            <column name="keyword" value="candidate_status"/>
+            <column name="config_name" value="READY FOR PARTNER INTERVIEW"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 15:00:06.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="19"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="3 weeks"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-01 10:32:21.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="20"/>
+            <column name="keyword" value="request_status"/>
+            <column name="config_name" value="IN PROGRESS"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 14:26:04.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="21"/>
+            <column name="keyword" value="the_grid"/>
+            <column name="config_name" value="desired"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-01 10:44:38.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="22"/>
+            <column name="keyword" value="candidate_status"/>
+            <column name="config_name" value="READY FOR CLIENT INTERVIEW"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 15:00:26.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="23"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="1 month"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-01 10:32:30.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="24"/>
+            <column name="keyword" value="request_status"/>
+            <column name="config_name" value="CLOSED"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 14:26:32.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="25"/>
+            <column name="keyword" value="candidate_status"/>
+            <column name="config_name" value="MORE_REQUIRED"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 15:01:03.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="26"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="2 months"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-01 10:32:41.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="27"/>
+            <column name="keyword" value="request_status"/>
+            <column name="config_name" value="REJECTED"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 14:39:20.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="28"/>
+            <column name="keyword" value="candidate_status"/>
+            <column name="config_name" value="REJECTED"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 15:01:24.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="29"/>
+            <column name="keyword" value="candidate_status"/>
+            <column name="config_name" value="PASSED"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-01-27 15:01:34.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="30"/>
+            <column name="keyword" value="number_of_position"/>
+            <column name="config_name" value="1"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-23 10:23:32.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="31"/>
+            <column name="keyword" value="number_of_position"/>
+            <column name="config_name" value="2"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-23 10:24:35.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="32"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value="Analyst"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-25 17:56:17.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="33"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value="Administrator"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-25 17:56:34.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="34"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value="Architect"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-25 17:57:44.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="35"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value="CIO"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-25 17:58:51.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="36"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value="Programmer"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-25 17:59:27.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="37"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value="Support"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2011-02-25 18:00:17.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="38"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value="Manager"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-25 18:00:31.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="39"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value="JAVA Developer"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-25 18:00:56.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="40"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value=".NET Developer"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-25 18:01:08.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="41"/>
+            <column name="keyword" value="minimum_security_clearance"/>
+            <column name="config_name" value="None"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-25 18:09:19.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="42"/>
+            <column name="keyword" value="minmum_security_clearance"/>
+            <column name="config_name" value="Discolsure Scotland"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 10:50:09.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="43"/>
+            <column name="keyword" value="minimum_security_clearance"/>
+            <column name="config_name" value="DV"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 10:50:39.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="44"/>
+            <column name="keyword" value="minimum_security_clearance"/>
+            <column name="config_name" value="Nato"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 10:51:09.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="45"/>
+            <column name="keyword" value="client"/>
+            <column name="config_name" value="Daily Mail &amp; General Trust"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 10:51:59.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="46"/>
+            <column name="keyword" value="client"/>
+            <column name="config_name" value="Deloitte LLP"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 10:52:10.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="47"/>
+            <column name="keyword" value="client"/>
+            <column name="config_name" value="Meggitt plc"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 10:52:20.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="48"/>
+            <column name="keyword" value="client"/>
+            <column name="config_name" value="Prudential plc"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 10:52:31.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="49"/>
+            <column name="keyword" value="client"/>
+            <column name="config_name" value="Hunter Macdonald"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 10:52:45.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="50"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="3 months"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 11:08:15.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="51"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="4 months"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 11:08:37.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="52"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="5 months"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 11:08:46.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="53"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="6 months"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-12-26 11:08:54.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="54"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="12 months"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 11:09:08.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="55"/>
+            <column name="keyword" value="contract_length"/>
+            <column name="config_name" value="Other"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-02-26 11:09:16.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="56"/>
+            <column name="keyword" value="job_title"/>
+            <column name="config_name" value="Other"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-03 18:53:31.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="57"/>
+            <column name="keyword" value="client"/>
+            <column name="config_name" value="Other"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="58"/>
+            <column name="keyword" value="employment_type"/>
+            <column name="config_name" value="HM Perm Chargeable (HM decision)"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="59"/>
+            <column name="keyword" value="employment_type"/>
+            <column name="config_name" value="HM Perm Chargeable (Client decision)"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="60"/>
+            <column name="keyword" value="employment_type"/>
+            <column name="config_name" value="HM Perm Non-chargeable"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="61"/>
+            <column name="keyword" value="employment_type"/>
+            <column name="config_name" value="N/A"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet author="Admin (generated)" id="1457505283468-6">
+        <insert tableName="role">
+            <column name="id" valueNumeric="1"/>
+            <column name="role_name" value="HMT_RECRUITMENT_ADMIN"/>
+            <column name="role_desc" value="admin"/>
+            <column name="reg_date" valueDate="2016-01-25 15:14:11.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date" valueDate="2016-01-25 15:14:47.0"/>
+            <column name="mod_user_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" valueNumeric="2"/>
+            <column name="role_name" value="HMT_RECRUITMENT_PARTNER"/>
+            <column name="role_desc" value="partner"/>
+            <column name="reg_date" valueDate="2016-02-23 10:38:19.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" valueNumeric="3"/>
+            <column name="role_name" value="HMT_RECRUITMENT_TECH_INTERVIEWER"/>
+            <column name="role_desc" value="techInterviewer"/>
+            <column name="reg_date" valueDate="2016-02-23 10:38:34.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" valueNumeric="4"/>
+            <column name="role_name" value="HMT_RECRUITMENT_RECRUITER"/>
+            <column name="role_desc" value="recruiter"/>
+            <column name="reg_date" valueDate="2016-02-23 10:39:17.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" valueNumeric="5"/>
+            <column name="role_name" value="HMT_RECRUITMENT_REQUEST_REVIEWER"/>
+            <column name="role_desc" value="requestReviewer"/>
+            <column name="reg_date" valueDate="2016-02-26 10:56:04.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date" valueDate="2016-02-26 10:56:05.0"/>
+            <column name="mod_user_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505283468-7">
+        <insert tableName="user">
+            <column name="id" valueNumeric="1"/>
+            <column name="user_name" value="admin"/>
+            <column name="password" value="MTIzNDU2"/>
+            <column name="display_name" value="admin"/>
+            <column name="email" value="Huy.Trinh@HunterMacdonald.com"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="reg_date" valueDate="2016-01-25 15:19:54.0"/>
+            <column name="mod_user_id"/>
+            <column name="mod_date"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" valueNumeric="2"/>
+            <column name="user_name" value="partner"/>
+            <column name="password" value="MTIzNDU2"/>
+            <column name="display_name" value="partner"/>
+            <column name="email" value="Huy.Trinh@HunterMacdonald.com"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="reg_date" valueDate="2016-02-23 10:31:01.0"/>
+            <column name="mod_user_id"/>
+            <column name="mod_date"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" valueNumeric="4"/>
+            <column name="user_name" value="recruiter"/>
+            <column name="password" value="MTIzNDU2"/>
+            <column name="display_name" value="recruiter"/>
+            <column name="email" value="Huy.Trinh@HunterMacdonald.com"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="reg_date" valueDate="2016-02-23 10:35:29.0"/>
+            <column name="mod_user_id"/>
+            <column name="mod_date"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" valueNumeric="6"/>
+            <column name="user_name" value="requestReviewer"/>
+            <column name="password" value="MTIzNDU2"/>
+            <column name="display_name" value="requestReviewer"/>
+            <column name="email" value="Huy.Trinh@HunterMacdonald.com"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="reg_date" valueDate="2016-02-25 17:20:07.0"/>
+            <column name="mod_user_id"/>
+            <column name="mod_date"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" valueNumeric="7"/>
+            <column name="user_name" value="scott"/>
+            <column name="password" value="MTIzNDU2"/>
+            <column name="display_name" value="Scott Gourlay"/>
+            <column name="email" value="Huy.Trinh@HunterMacdonald.com"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="reg_date" valueDate="2016-02-26 10:53:51.0"/>
+            <column name="mod_user_id"/>
+            <column name="mod_date"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" valueNumeric="8"/>
+            <column name="user_name" value="christian "/>
+            <column name="password" value="MTIzNDU2"/>
+            <column name="display_name" value="Christian Brady"/>
+            <column name="email" value="Huy.Trinh@HunterMacdonald.com"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="reg_date" valueDate="2016-02-26 10:57:20.0"/>
+            <column name="mod_user_id"/>
+            <column name="mod_date"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1457505283468-8">
+        <insert tableName="user_role">
+            <column name="id" valueNumeric="1"/>
+            <column name="user_id" valueNumeric="1"/>
+            <column name="role_id" valueNumeric="1"/>
+            <column name="reg_date" valueDate="2016-01-25 15:20:42.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="user_role">
+            <column name="id" valueNumeric="2"/>
+            <column name="user_id" valueNumeric="2"/>
+            <column name="role_id" valueNumeric="2"/>
+            <column name="reg_date" valueDate="2016-02-23 11:09:11.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="user_role">
+            <column name="id" valueNumeric="4"/>
+            <column name="user_id" valueNumeric="4"/>
+            <column name="role_id" valueNumeric="4"/>
+            <column name="reg_date" valueDate="2016-02-23 11:09:33.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="user_role">
+            <column name="id" valueNumeric="5"/>
+            <column name="user_id" valueNumeric="6"/>
+            <column name="role_id" valueNumeric="5"/>
+            <column name="reg_date" valueDate="2016-02-26 10:57:00.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="user_role">
+            <column name="id" valueNumeric="6"/>
+            <column name="user_id" valueNumeric="7"/>
+            <column name="role_id" valueNumeric="3"/>
+            <column name="reg_date" valueDate="2016-02-26 10:58:17.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="user_role">
+            <column name="id" valueNumeric="7"/>
+            <column name="user_id" valueNumeric="8"/>
+            <column name="role_id" valueNumeric="3"/>
+            <column name="reg_date" valueDate="2016-02-26 10:58:34.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="huy" id="modifyRequestStatus">
+        <modifyDataType
+                        columnName="status"
+                        newDataType="VARCHAR(100)"
+                        tableName="request"/>
+    </changeSet>
+    <changeSet author="huy" id="modifyApplicationStatus">
+        <modifyDataType
+                columnName="status"
+                newDataType="VARCHAR(100)"
+                tableName="application"/>
+    </changeSet>
+    <changeSet author="huy" id="addColumnCloseTypeRequest">
+        <addColumn
+                   tableName="request">
+            <column name="close_type" type="varchar(1)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="huy" id="dropForeignKeyConstraint-theGrid">
+        <dropForeignKeyConstraint baseTableName="application" constraintName="FK3_the_grid"/>
+    </changeSet>
+    <changeSet author="huy" id="dropColumn-theGrid">
+        <dropColumn columnName="the_grid" tableName="application"/>
+    </changeSet>
+    <changeSet author="huy" id="addColumn-theGrid">
+        <addColumn
+                tableName="application">
+            <column name="the_grid" type="varchar(1)" defaultValue="0"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="addCandidateSourceConfig" author="huy">
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="62"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="Applied via JobServe"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="63"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="Applied via JobServe (Anonymous)"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="64"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="Applied via CV Library"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="65"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="Applied via LinkedIn"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="66"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="Pro-actively found via JobServe"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="67"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="Pro-actively found via JobSite"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="68"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="Pro-actively found via CV Library"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="69"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="Pro-actively found via LinkedIn"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="70"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="Grid"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="71"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="BullHorn Internal database"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+        <insert tableName="configuration">
+            <column name="id" valueNumeric="72"/>
+            <column name="keyword" value="candidate_source"/>
+            <column name="config_name" value="Recommendation from other source"/>
+            <column name="config_desc"/>
+            <column name="reg_date" valueDate="2016-03-04 16:59:07.0"/>
+            <column name="reg_user_id" valueNumeric="1"/>
+            <column name="mod_date"/>
+            <column name="mod_user_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="huy" id="addColumn-candidateSource">
+        <addColumn
+                tableName="application">
+            <column name="candidate_source" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="huy" id="addIndex-candidateSource">
+        <createIndex indexName="FK4_candidate_source" tableName="application">
+            <column name="candidate_source"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="huy" id="addForeignKey-candidateSource">
+        <addForeignKeyConstraint baseColumnNames="candidate_source" baseTableName="application" constraintName="FK4_candidate_source" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="configuration"/>
+    </changeSet>
+    <changeSet author="huy" id="dropColumn-jobTitleOther">
+        <dropColumn columnName="job_title_other" tableName="request"/>
+    </changeSet>
+    <changeSet author="huy" id="dropColumn-clientOther">
+        <dropColumn columnName="client_other" tableName="request"/>
+    </changeSet>
+    <changeSet author="huy" id="dropColumn-contractlengthOther">
+        <dropColumn columnName="contract_length_other" tableName="request"/>
+    </changeSet>
+    <changeSet author="huy" id="addColumn-approved">
+        <addColumn
+                tableName="configuration">
+            <column name="approved" type="varchar(1)" defaultValue="1"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="huy" id="addColumn-status">
+        <addColumn
+                tableName="user">
+            <column name="status" type="varchar(50)" defaultValue="HMT_RECRUITMENT_USER_ACTIVE"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="huy" id="changeKensalToAnonymous">
+        <update
+                tableName="configuration">
+            <column name="config_name" value='Anonymous' type="varchar(50)"/>
+            <where>id=17</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>
